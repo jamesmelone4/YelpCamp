@@ -18,7 +18,10 @@ router.get("/register", function(req, res){
 // CREATE route -- creates a new user, then redirects to campgrounds INDEX route
 router.post("/register", function(req, res){
   var newUser = new User({username: req.body.username});
-  User.register(newUser, req.body.password, function(err, createdUser){
+  if(req.body.adminCode === 'BoomerSooner2004') {
+		newUser.isAdmin = true;
+	}
+	User.register(newUser, req.body.password, function(err, createdUser){
     if(err){
       console.log(err);
 			req.flash("error", err.message);
