@@ -1,0 +1,13 @@
+.thumbnail {
+  padding: 0;
+}
+
+.thumbnail img {
+  width: 100%;
+}
+
+/* Google maps */
+#map {
+  height: 400px;
+  width: 100%;
+}
