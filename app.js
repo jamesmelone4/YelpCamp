@@ -18,9 +18,10 @@ var express                 = require('express'), // node package
     campgroundRoutes        = require('./routes/campgrounds'), //pull in campground routes
     commentRoutes           = require('./routes/comments'); // pull in comment routes
 
-// Connect the app to MongoDB and create a database named 'yelp_camp'--UPDATE THE VERSION (v1, v2, etc.) EACH TIME YOU MAKE A COPY!!!
-// mongoose.connect("mongodb://localhost/yelp_camp_v12"); -- this was the connection for the local database
-mongoose.connect("mongodb://jpm4:B00m3rS00n3r@ds241578.mlab.com:41578/yelpcamp_jpm4");
+
+// Connect the app to MongoDB -- local for dev and Heroku for production;
+// DATABASEURL="mongodb://localhost/yelp_camp_v12" for local; config var created for Heroku
+mongoose.connect(process.env.DATABASEURL);
 // Tell the app to use the 'body-parser' node package to parse the body of our requested data
 app.use(bodyParser.urlencoded({extended: true}));
 // Tell the app that our views will be in 'ejs' format
@@ -64,10 +65,10 @@ app.use("/campgrounds/:camp_id/comments", commentRoutes); // similarly, this DRY
 app.use("/", indexRoutes);
 
 // ========================================
-// Tell server to listen on !(port 3000) ---now on 'process.env.PORT' since we're launching from Heroku--
-// and inform us when the server is started
+// Tell server to listen on port 3000 for local host and on process.env.PORT at Heroku and inform us when the server is started;
+// used command line to specify LISTENPRT=3000 for local hostused and LISTENPRT config var on Heroku to define LISTENPRT as "PORT";
+// this allows me to maintain a dev database on localhost and a production database on Heroku
 // ========================================
-// app.listen(3000, process.env.IP, function () {
-app.listen(process.env.PORT, process.env.IP, function () {
+app.listen(process.env.LISTENPRT, process.env.IP, function () {
   console.log("The YelpCamp server has started")
 });
