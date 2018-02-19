@@ -46,7 +46,6 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 				lng				= data.results[0].geometry.location.lng,
 				location	= data.results[0].formatted_address,
 	      newCampground = {name: name, location: location, lat: lat, lng: lng, price: price, image: image, description: description, author: author};
-// 	      newCampground = {name: name, price: price, image: image, description: description, author: author};
 		// create a new campground and save to database
 		Campground.create(newCampground, function(err, createdCampground) {
 			if(err) {
