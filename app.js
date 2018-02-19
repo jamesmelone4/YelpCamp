@@ -70,5 +70,5 @@ app.use("/", indexRoutes);
 // this allows me to maintain a dev database on localhost and a production database on Heroku
 // ========================================
 app.listen(process.env.LISTENPRT, process.env.IP, function () {
-  console.log("The YelpCamp server has started")
+  console.log("The YelpCamp server has started on " + process.env.LISTENPRT)
 });
