@@ -20,9 +20,10 @@ var express                 = require('express'), // node package
 
 
 // Connect the app to MongoDB -- local for dev and Heroku for production;
-// command line 'export DATABASEURL="mongodb://localhost/yelp_camp_v12"' for local; config var created for Heroku;
-// command line must be re-run each time new SSH terminal is opened
-mongoose.connect(process.env.DATABASEURL);
+// if 'process.env.DATABASEURL' is empty, which it will be on localhost, then use "mongodb://localhost/yelp_camp_v12";
+// config var created in Heroku for DATABASEURL
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v12";
+mongoose.connect(url);
 // Tell the app to use the 'body-parser' node package to parse the body of our requested data
 app.use(bodyParser.urlencoded({extended: true}));
 // Tell the app that our views will be in 'ejs' format
