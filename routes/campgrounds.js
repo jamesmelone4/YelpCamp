@@ -41,11 +41,12 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
       image       = req.sanitize(req.body.image),
       description = req.sanitize(req.body.description),
       author      = {id: req.user._id, username: req.user.username};
-	geocoder.geocode(loc, function (err, data) {
-		var lat				= data.results[0].geometry.location.lat,
-				lng				= data.results[0].geometry.location.lng,
-				location	= data.results[0].formatted_address,
-	      newCampground = {name: name, location: location, lat: lat, lng: lng, price: price, image: image, description: description, author: author};
+// 	geocoder.geocode(loc, function (err, data) {
+// 		var lat				= data.results[0].geometry.location.lat,
+// 				lng				= data.results[0].geometry.location.lng,
+// 				location	= data.results[0].formatted_address,
+// 	      newCampground = {name: name, location: location, lat: lat, lng: lng, price: price, image: image, description: description, author: author};
+	      newCampground = {name: name, price: price, image: image, description: description, author: author};
 		// create a new campground and save to database
 		Campground.create(newCampground, function(err, createdCampground) {
 			if(err) {
@@ -57,7 +58,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 				res.redirect("/campgrounds");
 			}
 		});
-	});
+// 	});
 });
 
 //SHOW route - display info about one campground

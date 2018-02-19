@@ -19,7 +19,8 @@ var express                 = require('express'), // node package
     commentRoutes           = require('./routes/comments'); // pull in comment routes
 
 // Connect the app to MongoDB and create a database named 'yelp_camp'--UPDATE THE VERSION (v1, v2, etc.) EACH TIME YOU MAKE A COPY!!!
-mongoose.connect("mongodb://localhost/yelp_camp_v12");
+// mongoose.connect("mongodb://localhost/yelp_camp_v12"); -- this was the connection for the local database
+mongoose.connect("mongodb://jpm4:B00m3rS00n3r@ds241578.mlab.com:41578/yelpcamp_jpm4");
 // Tell the app to use the 'body-parser' node package to parse the body of our requested data
 app.use(bodyParser.urlencoded({extended: true}));
 // Tell the app that our views will be in 'ejs' format
