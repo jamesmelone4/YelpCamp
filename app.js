@@ -65,10 +65,9 @@ app.use("/campgrounds/:camp_id/comments", commentRoutes); // similarly, this DRY
 app.use("/", indexRoutes);
 
 // ========================================
-// Tell server to listen on port 8080 for local host and on process.env.PORT at Heroku and inform us when the server is started;
-// used command line to specify LISTENPRT=8080 for local hostused and LISTENPRT config var on Heroku to define LISTENPRT as "process.env.PORT";
-// this allows me to maintain a dev database on localhost and a production database on Heroku
+// Tell server to listen on port 3000 for local host and on process.env.PORT at Heroku and inform us when the server is started;
+// used command line to specify PORT=3000 for local host; this allows me to maintain a dev database on localhost and a prod database on Heroku
 // ========================================
-app.listen(process.env.LISTENPRT, process.env.IP, function () {
-  console.log("The YelpCamp server has started on " + process.env.LISTENPRT)
+app.listen(process.env.PORT, process.env.IP, function () {
+  console.log("The YelpCamp server has started on " + process.env.PORT)
 });
