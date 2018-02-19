@@ -20,7 +20,8 @@ var express                 = require('express'), // node package
 
 
 // Connect the app to MongoDB -- local for dev and Heroku for production;
-// DATABASEURL="mongodb://localhost/yelp_camp_v12" for local; config var created for Heroku
+// command line 'export DATABASEURL="mongodb://localhost/yelp_camp_v12"' for local; config var created for Heroku;
+// command line must be re-run each time new SSH terminal is opened
 mongoose.connect(process.env.DATABASEURL);
 // Tell the app to use the 'body-parser' node package to parse the body of our requested data
 app.use(bodyParser.urlencoded({extended: true}));
@@ -66,7 +67,8 @@ app.use("/", indexRoutes);
 
 // ========================================
 // Tell server to listen on port 3000 for local host and on process.env.PORT at Heroku and inform us when the server is started;
-// used command line to specify PORT=3000 for local host; this allows me to maintain a dev database on localhost and a prod database on Heroku
+// used command line 'export PORT=3000' for local host; this allows me to maintain a dev database on localhost and a prod database on Heroku;
+// command line must be re-run each time new SSH terminal is opened
 // ========================================
 app.listen(process.env.PORT, process.env.IP, function () {
   console.log("The YelpCamp server has started on " + process.env.PORT)
