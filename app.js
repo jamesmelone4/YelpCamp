@@ -64,9 +64,10 @@ app.use("/campgrounds/:camp_id/comments", commentRoutes); // similarly, this DRY
 app.use("/", indexRoutes);
 
 // ========================================
-// Tell server to listen on port 3000
+// Tell server to listen on !(port 3000) ---now on 'process.env.PORT' since we're launching from Heroku--
 // and inform us when the server is started
 // ========================================
-app.listen(3000, process.env.IP, function () {
+// app.listen(3000, process.env.IP, function () {
+app.listen(process.env.PORT, process.env.IP, function () {
   console.log("The YelpCamp server has started")
 });
